@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<h1>Proxy and Sync Separate</h1>
+<div class="mermaid">
+stateDiagram
+    fresh: No sync or proxy enabled
+    syncOn: Logged in to both, proxy disabled
+    proxyOn: Logged in to proxy, sync disabled
+    syncOnProxyOn: Logged in to both, both enabled
+
+    fresh --> syncOn : Normal FxA login
+    fresh --> proxyOn : Login & enable proxy
+    syncOn --> syncOnProxyOn : Enable proxy
+    proxyOn --> syncOnProxyOn : Enable sync
+    [*] --> fresh : Install or logout
+</div>
+<h1>Proxy Auth Also Enables Sync</h1>
+<div class="mermaid">
+    stateDiagram
+    fresh: No sync or proxy enabled
+    loggedIn: Logged in to both, proxy-ready
+    proxyOff
+    proxyOn
+
+    fresh --> loggedIn : Login to both
+    loggedIn --> fresh : Logout from both
+    proxyOff --> proxyOn : Toggle on
+    proxyOn --> proxyOff : Toggle off
+
+    note right of proxyOn : The proxy state is independent of sync.
+</div>
+<script src="https://unpkg.com/mermaid@8.4.0/dist/mermaid.min.js"></script>
+<script>
+    mermaid.initialize({startOnLoad:true});
+</script>
+</body>
+</html>

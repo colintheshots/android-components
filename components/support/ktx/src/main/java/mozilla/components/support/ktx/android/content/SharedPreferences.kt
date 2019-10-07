@@ -19,74 +19,92 @@ interface PreferencesHolder {
 
 private class BooleanPreference(
     private val key: String,
-    private val default: Boolean
+    private val default: Boolean,
+    private val onChange: (Boolean) -> Unit = {}
 ) : ReadWriteProperty<PreferencesHolder, Boolean> {
 
     override fun getValue(thisRef: PreferencesHolder, property: KProperty<*>): Boolean =
         thisRef.preferences.getBoolean(key, default)
 
-    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Boolean) =
+    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Boolean)  {
         thisRef.preferences.edit().putBoolean(key, value).apply()
+        onChange(value)
+    }
 }
 
 private class FloatPreference(
     private val key: String,
-    private val default: Float
+    private val default: Float,
+    private val onChange: (Float) -> Unit = {}
 ) : ReadWriteProperty<PreferencesHolder, Float> {
 
     override fun getValue(thisRef: PreferencesHolder, property: KProperty<*>): Float =
         thisRef.preferences.getFloat(key, default)
 
-    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Float) =
+    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Float) {
         thisRef.preferences.edit().putFloat(key, value).apply()
+        onChange(value)
+    }
 }
 
 private class IntPreference(
     private val key: String,
-    private val default: Int
+    private val default: Int,
+    private val onChange: (Int) -> Unit = {}
 ) : ReadWriteProperty<PreferencesHolder, Int> {
 
     override fun getValue(thisRef: PreferencesHolder, property: KProperty<*>): Int =
         thisRef.preferences.getInt(key, default)
 
-    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Int) =
+    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Int) {
         thisRef.preferences.edit().putInt(key, value).apply()
+        onChange(value)
+    }
 }
 
 private class LongPreference(
     private val key: String,
-    private val default: Long
+    private val default: Long,
+    private val onChange: (Long) -> Unit = {}
 ) : ReadWriteProperty<PreferencesHolder, Long> {
 
     override fun getValue(thisRef: PreferencesHolder, property: KProperty<*>): Long =
         thisRef.preferences.getLong(key, default)
 
-    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Long) =
+    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Long) {
         thisRef.preferences.edit().putLong(key, value).apply()
+        onChange(value)
+    }
 }
 
 private class StringPreference(
     private val key: String,
-    private val default: String
+    private val default: String,
+    private val onChange: (String) -> Unit = {}
 ) : ReadWriteProperty<PreferencesHolder, String> {
 
     override fun getValue(thisRef: PreferencesHolder, property: KProperty<*>): String =
         thisRef.preferences.getString(key, default) ?: default
 
-    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: String) =
+    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: String) {
         thisRef.preferences.edit().putString(key, value).apply()
+        onChange(value)
+    }
 }
 
 private class StringSetPreference(
     private val key: String,
-    private val default: Set<String>
+    private val default: Set<String>,
+    private val onChange: (Set<String>) -> Unit = {}
 ) : ReadWriteProperty<PreferencesHolder, Set<String>> {
 
     override fun getValue(thisRef: PreferencesHolder, property: KProperty<*>): Set<String> =
         thisRef.preferences.getStringSet(key, default) ?: default
 
-    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Set<String>) =
+    override fun setValue(thisRef: PreferencesHolder, property: KProperty<*>, value: Set<String>) {
         thisRef.preferences.edit().putStringSet(key, value).apply()
+        onChange(value)
+    }
 }
 
 /**
@@ -100,8 +118,8 @@ private class StringSetPreference(
  * }
  * ```
  */
-fun booleanPreference(key: String, default: Boolean): ReadWriteProperty<PreferencesHolder, Boolean> =
-    BooleanPreference(key, default)
+fun booleanPreference(key: String, default: Boolean, onChange: (Boolean) -> Unit = {}): ReadWriteProperty<PreferencesHolder, Boolean> =
+    BooleanPreference(key, default, onChange)
 
 /**
  * Property delegate for getting and setting a float number shared preference.
@@ -114,8 +132,8 @@ fun booleanPreference(key: String, default: Boolean): ReadWriteProperty<Preferen
  * }
  * ```
  */
-fun floatPreference(key: String, default: Float): ReadWriteProperty<PreferencesHolder, Float> =
-    FloatPreference(key, default)
+fun floatPreference(key: String, default: Float, onChange: (Float) -> Unit = {}): ReadWriteProperty<PreferencesHolder, Float> =
+    FloatPreference(key, default, onChange)
 
 /**
  * Property delegate for getting and setting an int number shared preference.
@@ -128,8 +146,8 @@ fun floatPreference(key: String, default: Float): ReadWriteProperty<PreferencesH
  * }
  * ```
  */
-fun intPreference(key: String, default: Int): ReadWriteProperty<PreferencesHolder, Int> =
-    IntPreference(key, default)
+fun intPreference(key: String, default: Int, onChange: (Int) -> Unit = {}): ReadWriteProperty<PreferencesHolder, Int> =
+    IntPreference(key, default, onChange)
 
 /**
  * Property delegate for getting and setting a long number shared preference.
@@ -142,8 +160,8 @@ fun intPreference(key: String, default: Int): ReadWriteProperty<PreferencesHolde
  * }
  * ```
  */
-fun longPreference(key: String, default: Long): ReadWriteProperty<PreferencesHolder, Long> =
-    LongPreference(key, default)
+fun longPreference(key: String, default: Long, onChange: (Long) -> Unit = {}): ReadWriteProperty<PreferencesHolder, Long> =
+    LongPreference(key, default, onChange)
 
 /**
  * Property delegate for getting and setting a string shared preference.
@@ -156,8 +174,8 @@ fun longPreference(key: String, default: Long): ReadWriteProperty<PreferencesHol
  * }
  * ```
  */
-fun stringPreference(key: String, default: String): ReadWriteProperty<PreferencesHolder, String> =
-    StringPreference(key, default)
+fun stringPreference(key: String, default: String, onChange: (String) -> Unit = {}): ReadWriteProperty<PreferencesHolder, String> =
+    StringPreference(key, default, onChange)
 
 /**
  * Property delegate for getting and setting a string set shared preference.
@@ -170,5 +188,5 @@ fun stringPreference(key: String, default: String): ReadWriteProperty<Preference
  * }
  * ```
  */
-fun stringSetPreference(key: String, default: Set<String>): ReadWriteProperty<PreferencesHolder, Set<String>> =
-    StringSetPreference(key, default)
+fun stringSetPreference(key: String, default: Set<String>, onChange: (Set<String>) -> Unit = {}): ReadWriteProperty<PreferencesHolder, Set<String>> =
+    StringSetPreference(key, default, onChange)

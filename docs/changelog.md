@@ -186,6 +186,9 @@ permalink: /changelog/
 
 * **sample-nearby-chat**
   * 🆕 New sample program demonstrating use of `lib-nearby`.
+  
+* **feature-secure-proxy**
+  * New component adding a customized version of the Secure Proxy extension for mobile browsers.
 
 * **feature-customtabs**
   * ⚠️ `CustomTabWindowFeature` now takes `Activity` instead of `Context`.

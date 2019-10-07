@@ -1,0 +1,218 @@
+{
+  "extensionName": {
+    "message": "Firefox Private Network"
+  },
+  "extensionDescription": {
+    "message": "A secure, encrypted tunnel to the web to protect yourself everywhere you use Firefox."
+  },
+
+  "badgeOnText": {
+    "message": "Firefox Private Network is On"
+  },
+  "badgeOffText": {
+    "message": "Firefox Private Network is Off"
+  },
+  "badgeWarningText": {
+    "message": "Firefox Private Network is inactive"
+  },
+
+  "heroProxyOff": {
+    "message": "OFF"
+  },
+  "heroProxyOn": {
+    "message": "ON"
+  },
+  "heroProxyLogin": {
+    "message": "Login"
+  },
+  "heroProxyConnecting": {
+    "message": "Connecting"
+  },
+
+  "injectedModalHeading": {
+    "message": "Firefox Private Network"
+  },
+  "injectedModalDismissButton": {
+    "message": "Keep On"
+  },
+  "injectedModalAcceptButton": {
+    "message": "Turn Off in This Tab"
+  },
+  "viewExemptTab": {
+    "message": "This tab is not protected by the Private Network proxy service. Your location is visible to ad trackers and websites you visit in this tab."
+  },
+
+  "introHeading": {
+    "message": "Firefox Private Network"
+  },
+  "introSettings": {
+    "message": "Settings"
+  },
+
+  "popupPoweredBy": {
+    "message": "Powered by "
+  },
+  "popupCloudflare": {
+    "message": "Cloudflare"
+  },
+  "popupCloudflareRT": {
+    "message": "®"
+  },
+  "popupToggleButton": {
+    "message": "Firefox Private Network"
+  },
+  "popupSettingsButtonLabel": {
+    "message": "Settings"
+  },
+  "popupBackButtonLabel": {
+    "message": "Back"
+  },
+  "popupToggleButtonLabel": {
+    "message": "Toggle proxy state"
+  },
+  "popupBetaUnlimited": {
+    "message": "Want unlimited access?"
+  },
+  "popupBetaUpgrade": {
+    "message": "Upgrade"
+  },
+
+  "toastLastPassAvailable": {
+    "message": "You have 1 new Firefox Private Network pass!"
+  },
+  "toastPassesAvailable": {
+    "message": "You have $number$ new Firefox Private Network passes!",
+    "placeholders": {
+      "number" : {
+        "content" : "$1"
+      }
+    }
+  },
+  "toastLastPassExpired": {
+    "message": "You've used all your free passes for this month."
+  },
+  "toastPassExpired": {
+    "message": "Pass expired. Firefox Private Network is off."
+  },
+  "toastProxyOff": {
+    "message": "Firefox Private Network is off."
+  },
+  "toastProxyOn": {
+    "message": "Firefox Private Network is on."
+  },
+  "toastWarning": {
+    "message": "Firefox Private Network needs your attention!"
+  },
+  "toastTabExempt": {
+    "message": "Firefox Private Network is temporarily disabled."
+  },
+
+  "viewAuthFailure": {
+    "message": "Sign in failed. Try again."
+  },
+  "viewConnecting": {
+    "message": "Connecting to the secure server…"
+  },
+  "viewGeoFailure": {
+    "message": "At this time, Firefox Private Network is not available in your region. You must be in the United States to complete the setup process."
+  },
+  "viewLoading": {
+    "message": "Establishing connection to Firefox Private Network. This should take just a few more moments."
+  },
+  "viewLoginMessage":{
+    "message": "To start using Private Network, sign in to your Firefox account or create one."
+  },
+  "viewLoginButton":{
+    "message": "Continue"
+  },
+  "viewTryAgainLoginButton":{
+    "message": "Try Again"
+  },
+  "viewMainActive": {
+    "message": "Your connection is secure, and your location is hidden from websites and trackers, making it tougher for those annoying targeted ads to follow you around online."
+  },
+  "viewMainActiveLimited": {
+    "message": "Private Network reduces ad tracking, encrypts your Firefox browsing, and hides your location. Passes run without stopping for 8 hours."
+  },
+  "viewMainInactive": {
+    "message": "Private Network is not protecting your Firefox connection. Websites, ad trackers, and your internet service provider may be able to see your online activity."
+  },
+  "viewMainInactiveWithPasses": {
+    "message": "To claim a pass, turn on Private Network. This reduces ad tracking, encrypts your Firefox browsing, and hides your location. Passes run without stopping for 8 hours."
+  },
+  "viewMainInactiveWithoutPasses": {
+    "message": "Upgrade for unlimited access to Private Network to encrypt your browsing and hide your location."
+  },
+  "viewMainUpgradeButton": {
+    "message": "Upgrade"
+  },
+  "viewMainLastPassAvailableActive": {
+    "message": "1 pass remaining"
+  },
+  "viewMainLastPassAvailableInactive": {
+    "message": "1 pass remaining this month"
+  },
+  "viewMainManyPassesAvailableActive": {
+    "message": "$number$ passes remaining",
+    "placeholders": {
+      "number" : {
+        "content" : "$1"
+      }
+    }
+  },
+  "viewMainManyPassesAvailableInactive": {
+    "message": "$number$ passes remaining this month",
+    "placeholders": {
+      "number" : {
+        "content" : "$1"
+      }
+    }
+  },
+  "viewMainLastPassActive": {
+    "message": "Final pass in use"
+  },
+  "viewOffline": {
+    "message": "You are offline. Check your network connection and try again."
+  },
+  "viewOtherInUse": {
+    "message": "You cannot use Firefox Private Network because you are using a custom proxy setting."
+  },
+  "viewProxyError": {
+    "message": "Firefox Private Network encountered an unknown issue. Try turning it off, then on again."
+  },
+  "viewProxyErrorPassCount": {
+    "message": "/ passes remaining"
+  },
+  "viewSettings-accountLabel": {
+    "message": "Firefox Account"
+  },
+  "viewSettings-giveUsFeedbackLink": {
+    "message": "Leave Feedback"
+  },
+  "viewSettings-helpAndSupportLink": {
+    "message": "Help & Support"
+  },
+  "viewSettings-howPassesWorkLink": {
+    "message": "How Passes Work"
+  },
+  "viewSettings-manageAccountButton": {
+    "message": "Manage Account"
+  },
+  "viewSettings-manageAccountLink": {
+    "message": "Manage Account"
+  },
+  "viewSettings-privacyPolicyLink": {
+    "message": "Privacy Policy"
+  },
+  "viewSettings-termsAndConditionsLink": {
+    "message": "Terms & Conditions"
+  },
+
+  "loadingError": {
+    "message": "Connection timeout, check your internet connection."
+  },
+
+  "internalError": {
+    "message": "Internal error!"
+  }
+}

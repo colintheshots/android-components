@@ -76,6 +76,10 @@ projects:
     path: components/feature/search
     description: 'Feature implementation connecting an engine implementation with the search module.'
     publish: true
+  feature-secure-proxy:
+    path: components/feature/secure-proxy
+    description: 'Feature implementation providing a Secure Proxy WebExtension.'
+    publish: true
   feature-session:
     path: components/feature/session
     description: 'Feature implementation connecting an engine implementation with the session module.'

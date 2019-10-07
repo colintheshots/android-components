@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import mozilla.components.browser.domains.autocomplete.ShippedDomainsProvider
+import mozilla.components.browser.engine.gecko.fetch.GeckoViewFetchClient
 import mozilla.components.browser.engine.system.SystemEngine
 import mozilla.components.browser.icons.BrowserIcons
 import mozilla.components.browser.menu.BrowserMenuBuilder
@@ -32,7 +33,6 @@ import mozilla.components.browser.state.store.BrowserStore
 import mozilla.components.browser.storage.memory.InMemoryHistoryStorage
 import mozilla.components.concept.engine.DefaultSettings
 import mozilla.components.concept.engine.Engine
-import mozilla.components.concept.fetch.Client
 import mozilla.components.feature.addons.amo.AddonCollectionProvider
 import mozilla.components.feature.addons.AddonManager
 import mozilla.components.feature.addons.update.AddonUpdater
@@ -57,7 +57,6 @@ import mozilla.components.feature.session.HistoryDelegate
 import mozilla.components.feature.session.SessionUseCases
 import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.feature.webnotifications.WebNotificationFeature
-import mozilla.components.lib.fetch.httpurlconnection.HttpURLConnectionClient
 import org.mozilla.samples.browser.addons.AddonsActivity
 import org.mozilla.samples.browser.ext.components
 import org.mozilla.samples.browser.integration.FindInPageIntegration
@@ -94,7 +93,7 @@ open class DefaultComponents(private val applicationContext: Context) {
         SystemEngine(applicationContext, engineSettings)
     }
 
-    open val client: Client by lazy { HttpURLConnectionClient() }
+    val client by lazy { GeckoViewFetchClient(applicationContext) }
 
     val icons by lazy { BrowserIcons(applicationContext, client) }
 

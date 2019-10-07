@@ -140,6 +140,8 @@ _Combined components to implement feature-specific use cases._
 
 * 🔴 [**Search**](components/feature/search/README.md) - A component that connects an (concept) engine implementation with the browser search module.
 
+*  [**Secure Proxy**](components/feature/secure-proxy/README.md) -  A component providing a Secure Proxy WebExtension for proxying traffic inside a browser app.
+
 * ⚪ [**Session**](components/feature/session/README.md) - A component that connects an (concept) engine implementation with the browser session and storage modules.
 
 * 🔴 [**Sync**](components/feature/sync/README.md) -A component that provides synchronization orchestration for groups of (concept) SyncableStore objects.
