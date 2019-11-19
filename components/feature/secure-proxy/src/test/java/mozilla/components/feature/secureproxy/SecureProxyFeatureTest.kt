@@ -59,11 +59,11 @@ class SecureProxyFeatureTest {
         val ext = mock<WebExtension>()
         `when`(sessionManager.engine).thenReturn(engine)
         `when`(accountManager.authenticatedAccount()).thenReturn(null)
-        val secureProxyFeature = SecureProxyFeature(context, client, accountManager, sessionManager, locationService)
+        val secureProxyFeature = spy(SecureProxyFeature(context, client, accountManager, sessionManager, locationService))
 
         secureProxyFeature.onApplicationStartup()
-        secureProxyFeature.onResume()
         WebExtensionController.installedExtensions[SecureProxyFeature.SECURE_PROXY_EXTENSION_ID] = ext
+        secureProxyFeature.onResume()
         `when`(accountManager.authenticatedAccount()).thenReturn(account)
         secureProxyFeature.onAuthenticated(account, AuthType.Signin)
 
