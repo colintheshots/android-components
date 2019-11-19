@@ -103,6 +103,7 @@ class SecureProxyFeature(
 
     override fun onLoggedOut() {
         super.onLoggedOut()
+        config.enabled = false
         extensionController.disconnectPort(null)
     }
 
