@@ -7,5 +7,8 @@
       "matches": ["*://www.mozilla.org/*"],
       "js": ["borderify.js"]
     }
-  ]
+  ],
+  "background": {
+    "page": "page.html"
+  }
 }

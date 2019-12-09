@@ -24,12 +24,6 @@ import org.mozilla.samples.browser.ext.components
  */
 open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
 
-    /**
-     * Returns a new instance of [BrowserFragment] to display.
-     */
-    open fun createBrowserFragment(sessionId: String?): Fragment =
-        BrowserFragment.create(sessionId)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,7 +31,7 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
         if (savedInstanceState == null) {
             val sessionId = SafeIntent(intent).getSessionId()
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.container, createBrowserFragment(sessionId))
+                replace(R.id.container, HomeFragment(sessionId))
                 commit()
             }
         }
@@ -69,5 +63,13 @@ open class BrowserActivity : AppCompatActivity(), ComponentCallbacks2 {
     override fun onTrimMemory(level: Int) {
         components.sessionManager.onLowMemory()
         components.icons.onLowMemory()
+    }
+
+    companion object {
+        /**
+         * Returns a new instance of [BrowserFragment] to display.
+         */
+        fun createBrowserFragment(sessionId: String?): Fragment =
+                BrowserFragment.create(sessionId)
     }
 }
