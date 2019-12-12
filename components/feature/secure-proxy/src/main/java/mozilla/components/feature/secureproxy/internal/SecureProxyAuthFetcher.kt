@@ -58,22 +58,17 @@ class SecureProxyAuthFetcher(
         }
     }
 
-    private fun getCode(account: OAuthAccount, state: String): String? =
-            account.authorizeOAuthCode(FPN_CLIENT_ID, FPN_SCOPES, state, accessType = AccessType.OFFLINE)
+    private suspend fun getCode(account: OAuthAccount, state: String): String? =
+            account.authorizeOAuthCodeAsync(FPN_CLIENT_ID, FPN_SCOPES, state, accessType = AccessType.OFFLINE).await()
 
-    private fun getEndpointURL(environment: Environment): String {
-        return when (environment) {
-            Environment.DEV -> {
-                DEV_FPN_ENDPOINT_URL
-            }
-            Environment.PRODUCTION -> {
-                PROD_FPN_ENDPOINT_URL
-            }
+    private fun getEndpointURL(environment: Environment): String =
+        when (environment) {
+            Environment.DEV -> DEV_FPN_ENDPOINT_URL
+            Environment.PRODUCTION -> PROD_FPN_ENDPOINT_URL
         }
-    }
 
     private fun getFPNStatePath(environment: Environment) : String =
-            getEndpointURL(environment) + FPN_STATE_PATH
+        getEndpointURL(environment) + FPN_STATE_PATH
 
     sealed class AuthResult {
         data class Success(val value: String) : AuthResult()
