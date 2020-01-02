@@ -7,19 +7,29 @@ package mozilla.components.feature.readerview.internal
 import androidx.core.view.isVisible
 import mozilla.components.feature.readerview.ReaderViewFeature
 import mozilla.components.feature.readerview.view.ReaderViewControlsView
+import mozilla.components.feature.readerview.view.StubOrView
+import mozilla.components.feature.readerview.view.lazyInflated
 
 /**
  * Presenter implementation that will update the view whenever the feature is started.
  */
 internal class ReaderViewControlsPresenter(
-    private val view: ReaderViewControlsView,
+    stubOrView: StubOrView<ReaderViewControlsView>,
     private val config: ReaderViewFeature.Config
 ) {
+
+    private var controlsShouldBeInflated = false
+    private val view: ReaderViewControlsView? by lazyInflated(stubOrView) {controlsShouldBeInflated}
+    private var interactor: ReaderViewControlsInteractor? = null
+
     /**
      * Sets the initial state of the ReaderView controls and makes the controls visible.
      */
     fun show() {
-        view.apply {
+        controlsShouldBeInflated = true
+        interactor =  ReaderViewControlsInteractor(view!!, config)
+        view!!.apply {
+            interactor!!.start()
             setColorScheme(config.colorScheme)
             setFont(config.fontType)
             setFontSize(config.fontSize)
@@ -31,13 +41,14 @@ internal class ReaderViewControlsPresenter(
      * Checks whether or not the ReaderView controls are visible.
      */
     fun areControlsVisible(): Boolean {
-        return view.asView().isVisible
+        return view?.asView()?.isVisible ?: false
     }
 
     /**
      * Hides the controls.
      */
     fun hide() {
-        view.hideControls()
+        interactor?.stop()
+        view?.hideControls()
     }
 }

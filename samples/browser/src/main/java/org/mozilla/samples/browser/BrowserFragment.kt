@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_browser.view.*
 import mozilla.components.feature.awesomebar.AwesomeBarFeature
 import mozilla.components.feature.awesomebar.provider.SearchSuggestionProvider
+import mozilla.components.feature.readerview.view.StubOrView
 import mozilla.components.feature.session.ThumbnailsFeature
 import mozilla.components.feature.tabs.WindowFeature
 import mozilla.components.feature.tabs.toolbar.TabsToolbarFeature
@@ -58,7 +59,7 @@ class BrowserFragment : BaseBrowserFragment(), UserInteractionHandler {
                 components.engine,
                 components.sessionManager,
                 layout.toolbar,
-                layout.readerViewBar,
+                StubOrView.Stub(layout.stubReaderViewBar),
                 layout.readerViewAppearanceButton
             ),
             owner = this,

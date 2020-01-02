@@ -13,13 +13,13 @@ import mozilla.components.browser.session.SessionManager
 import mozilla.components.concept.engine.Engine
 import mozilla.components.concept.engine.webextension.MessageHandler
 import mozilla.components.concept.engine.webextension.Port
-import mozilla.components.feature.readerview.internal.ReaderViewControlsInteractor
-import mozilla.components.feature.readerview.internal.ReaderViewControlsPresenter
-import mozilla.components.feature.readerview.view.ReaderViewControlsView
 import mozilla.components.feature.readerview.ReaderViewFeature.ColorScheme.LIGHT
 import mozilla.components.feature.readerview.ReaderViewFeature.FontType.SERIF
-import mozilla.components.support.base.feature.UserInteractionHandler
+import mozilla.components.feature.readerview.internal.ReaderViewControlsPresenter
+import mozilla.components.feature.readerview.view.ReaderViewControlsView
+import mozilla.components.feature.readerview.view.StubOrView
 import mozilla.components.support.base.feature.LifecycleAwareFeature
+import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.webextensions.WebExtensionController
 import org.json.JSONObject
 import java.lang.ref.WeakReference
@@ -47,7 +47,7 @@ class ReaderViewFeature(
     private val context: Context,
     private val engine: Engine,
     private val sessionManager: SessionManager,
-    controlsView: ReaderViewControlsView,
+    stubOrView: StubOrView<ReaderViewControlsView>,
     private val onReaderViewAvailableChange: OnReaderViewAvailableChange = { }
 ) : SelectionAwareSessionObserver(sessionManager), LifecycleAwareFeature, UserInteractionHandler {
 
@@ -58,8 +58,7 @@ class ReaderViewFeature(
     @VisibleForTesting
     internal val config = Config(context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE))
 
-    private val controlsPresenter = ReaderViewControlsPresenter(controlsView, config)
-    private val controlsInteractor = ReaderViewControlsInteractor(controlsView, config)
+    private val controlsPresenter = ReaderViewControlsPresenter(stubOrView, config)
 
     enum class FontType(val value: String) { SANSSERIF("sans-serif"), SERIF("serif") }
     enum class ColorScheme { LIGHT, SEPIA, DARK }
@@ -107,13 +106,6 @@ class ReaderViewFeature(
                 updateReaderViewState(it)
             }
         }
-
-        controlsInteractor.start()
-    }
-
-    override fun stop() {
-        controlsInteractor.stop()
-        super.stop()
     }
 
     override fun onBackPressed(): Boolean {
